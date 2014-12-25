@@ -1,3 +1,4 @@
+
 <?php
 // This file is www.developphp.com curriculum material
 // Written by Adam Khoury January 01, 2011
@@ -84,6 +85,7 @@ if (isset($_GET['pid'])) {
 </head>
 
 <body>
+
 <div align="center" id="mainWrapper">
   <?php include_once("template_header.php");?>
   <div id="pageContent"><br />

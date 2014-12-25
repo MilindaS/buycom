@@ -68,8 +68,19 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                             <input name="password" class="form-control" placeholder="Password" type="password" id="password" size="40" />
 
 			    		</div>
-
+<div class="form-group">
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login"  style="font-weight: bold">
+                       </div>
+
+                            <?php if(isset($error)){
+                                if($error!=null){
+                                    echo '<div class="alert alert-danger" role="alert">';
+                                    echo $error;
+                                    echo ' </div>';
+                                }
+                                }?>
+
+                       
 			    	</fieldset>
 			      	</form>
                     <p>&nbsp; </p>
