@@ -182,13 +182,14 @@ if (isset($_GET['pid'])) {
       </div>
     </div>
 
-    
-        &nbsp;
-        <label>
+<div class="form-group">
+    <div class="col-md-10 col-md-offset-2">
+       
             <input name="thisID" type="hidden" value="<?php echo $targetID; ?>" />
-          <input type="submit" name="button" id="button" value="Make change" class="btn btn-primary" />
-        </label>
-
+          <input type="submit" name="button" id="button" value="Make change" class="btn btn-primary pull-left" />
+        
+        </div>
+</div>
     </form>
     </div>
 

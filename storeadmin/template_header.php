@@ -14,8 +14,8 @@
 	<div class="collapse navbar-collapse js-navbar-collapse">
 		<ul class="nav navbar-nav">
             <li> <a href="index.php">Home</a></li>
-            <li><a href="inventory_list.php">Manage</a></li>
-
+            <li><a href="inventory_list.php">Manage Stock</a></li>
+<li><a href="user_list.php">Manage Users</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li ><a href="logout.php" > Logout</a></li>

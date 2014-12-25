@@ -98,13 +98,17 @@ if (isset($_POST['product_name'])) {
     </div>
   </div>
 
-  <div class="row">
+  
+
+<div class="container">
+
+<div class="row">
     <div class="col-md-12">
-      <div align="right" style="margin-right:32px;"><a href="inventory_add.php">+ Add New Product</a></div>
+      <a href="inventory_add.php" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Add New Product</a>
     </div>
   </div>
 
-<div class="container">
+
   <div class="row" >
   <div id="pageContent"><br />
     
