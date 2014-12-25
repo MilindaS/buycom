@@ -73,23 +73,7 @@ if (isset($_POST['product_name'])) {
     exit();
 }
 ?>
-<?php 
-// This block grabs the whole list for viewing
-$product_list = "";
-$sql = mysqli_query($link,"SELECT * FROM products ORDER BY date_added DESC");
-$productCount = mysqli_num_rows($sql); // count the output amount
-if ($productCount > 0) {
-	while($row = mysqli_fetch_array($sql)){ 
-             $id = $row["id"];
-			 $product_name = $row["product_name"];
-			 $price = $row["price"];
-			 $date_added = strftime("%b %d, %Y", strtotime($row["date_added"]));
-			 $product_list .= "Product ID: $id - <strong>$product_name</strong> - $$price - <em>Added $date_added</em> &nbsp; &nbsp; &nbsp; <a href='inventory_edit.php?pid=$id'class='btn btn-primary btn-sm'>edit</a> &bull; <a href='inventory_list.php?deleteid=$id' class='btn btn-danger btn-sm'>delete</a><br /><br />";
-    }
-} else {
-	$product_list = "You have no products listed in your store yet";
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -104,98 +88,103 @@ if ($productCount > 0) {
 </head>
 
 <body>
-<div class="container-fluid ">
+<div class="container-fluid" style="background:#fff;">
 
 <!--<div align="center" id="mainWrapper">  -->
-  <div class="row panel panel-default">
-  <?php include_once("template_header.php");?>
+
+  <div class="row">
+    <div class="col-md-12">
+      <?php include_once("template_header.php");?>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div align="right" style="margin-right:32px;"><a href="inventory_add.php">+ Add New Product</a></div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row" >
   <div id="pageContent"><br />
-    <div align="right" style="margin-right:32px;"><a href="inventory_list.php#inventoryForm">+ Add New Product</a></div>
+    
 <div align="left" >
     <div class="row">
-    <div class="col-sm-7 col-sm-offset-1">
+    <div class="col-md-12">
       <h2>Product List</h2>
-      <?php echo $product_list; ?>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product Img</th>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Added Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+      <tbody>
+      <?php 
+        // This block grabs the whole list for viewing
+        $product_list = "";
+        $sql = mysqli_query($link,"SELECT * FROM products ORDER BY date_added DESC");
+        $productCount = mysqli_num_rows($sql); // count the output amount
+        if ($productCount > 0) {
+          while($row = mysqli_fetch_array($sql)){ 
+                     $id = $row["id"];
+
+               $product_name = $row["product_name"];
+               $price = $row["price"];
+               $date_added = strftime("%b %d, %Y", strtotime($row["date_added"]));
+               //$product_list .= "Product ID: $id - <strong>$product_name</strong> - $$price - <em>Added $date_added</em> &nbsp; &nbsp; &nbsp; <a href='inventory_edit.php?pid=$id'class='btn btn-primary btn-sm'>edit</a> &bull; <a href='inventory_list.php?deleteid=$id' class='btn btn-danger btn-sm'>delete</a><br /><br />";
+
+?>
+<tr>
+            <td>
+              <img " class="thumbnail" src="../inventory_images/<?php echo $id;?>.jpg" alt="' . $product_name . '" width="120"  border="1" />
+            </td>
+            <td><?php echo $product_name;?></td>
+            <td><?php echo $price;?></td>
+            <td><?php echo $date_added;?></td>
+            <td>
+<a href='inventory_edit.php?pid=<?php echo $id;?>'class='btn btn-primary btn-sm'>edit</a> &bull; <a href='inventory_list.php?deleteid=<?php echo $id;?>' class='btn btn-danger btn-sm'>delete</a>
+            </td>
+          </tr>
+<?php
+
+
+
+            }
+        } else {
+          echo "You have no products listed in your store yet";
+        }
+        ?>
+      <?php //echo $product_list; ?>
+      </tbody>
+      </table>
       </div>
       </div>
     </div>
     <hr />
     <a name="inventoryForm" id="inventoryForm"></a>
-    <h3 class="col-sm-offset-3">
-    Add New Product Form
-    </h3></br>
-    <div class="row">
-    <div class="col-sm-7 col-sm-offset-3">
-
-    <form action="inventory_list.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
-
-
-
-        <label>   Product Name
-          <input class="form-control" name="product_name" type="text" id="product_name" />
-        </label>  </br> </br>
-
-
-        <label>  Product Price  $
-
-          <input class="form-control" name="price" type="text" id="price"/>
-        </label>
-        </br> </br>
-        <label>Category
-          <select class="form-control" name="category" id="category">
-
-          <option value="Clothing">Clothing</option>
-          <option value="Toys">Toys</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Sporting Goods">Sporting Goods</option>
-          </select>
-        </label>
-        </br>   </br>
-        <label>Subcategory
-        <select  name="subcategory" id="subcategory" class="form-control">
-
-          <option value="Pants">Pants</option>
-          <option value="Jeans">Jeans</option>
-          <option value="Casual Shirts">Casual Shirts</option>
-          <option value="Suits">Suits</option>
-          <option value="Athletic Apparel">Athletic Apparel</option>
-          <option value="Kids Toys">Kids Toys</option>
-          <option value="Phones">Phones</option>
-          <option value="Computers">Computers</option>
-          <option value="Cameras And Photos">Cameras And Photos</option>
-          <option value="Outdoor Sports">Outdoor Sports</option>
-          <option value="Indoor Games">Indoor Games</option>
-          <option value="Water Sports">Water Sports</option>
-          <option value="Mobile Accessories">Mobile Accessories</option>
-          <option value="Computer Accessories">Computer Accessories</option>
-          <option value="Camera Accessories">Camera Accessories</option>
-          </select>
-           </select>
-           </br> </br>
-          <label>Product Details
-          <textarea class="form-control" name="details" id="details"></textarea>
-        </label>
-        </br>   </br>
-        <label>Product Image
-          <input type="file" class="form-control" name="fileField" id="fileField" />
-        </label>
-
-        </br> </br>
-        &nbsp;
-        <label>
-          <input type="submit" name="button" id="button" value="Add This Item Now" class="btn btn-primary" />
-        </label>
-
-    </form>
-    </div>
-
-    <br />
-  <br />
-  </div>
   <?php include_once("template_footer.php");?>
 </div>
 </div>
 </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

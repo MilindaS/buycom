@@ -35,7 +35,7 @@ if (strpos($curl_result, "VERIFIED") !== false) {
     $req .= "\n\nPaypal Verified OK";
 } else {
 	$req .= "\n\nData NOT verified from Paypal!";
-	mail("rxhanafi@gmail.com", "IPN interaction not verified", "$req", "From: rxhanafi@gmail.com" );
+	mail("niroopmagalage@gmail.com", "IPN interaction not verified", "$req", "From: niroopmagalage@gmail.com" );
 	exit();
 }
 
@@ -47,9 +47,9 @@ if (strpos($curl_result, "VERIFIED") !== false) {
  
 // Check Number 1 ------------------------------------------------------------------------------------------------------------
 $receiver_email = $_POST['receiver_email'];
-if ($receiver_email != "rxhanafi@gmail.com") {
+if ($receiver_email != "niroopmagalage@gmail.com") {
 	$message = "Investigate why and how receiver email is wrong. Email = " . $_POST['receiver_email'] . "\n\n\n$req";
-    mail("rxhanafi@gmail.com", "Receiver Email is incorrect", $message, "From: rxhanafi@gmail.com" );
+    mail("niroopmagalage@gmail.com", "Receiver Email is incorrect", $message, "From: niroopmagalage@gmail.com" );
     exit(); // exit script
 }
 // Check number 2 ------------------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ $sql = mysqli_query($link,"SELECT id FROM transactions WHERE txn_id='$this_txn' 
 $numRows = mysqli_num_rows($sql);
 if ($numRows > 0) {
     $message = "Duplicate transaction ID occured so we killed the IPN script. \n\n\n$req";
-    mail("rxhanafi@gmail.com", "Duplicate txn_id in the IPN system", $message, "From: rxhanafi@gmail.com" );
+    mail("niroopmagalage@gmail.com", "Duplicate txn_id in the IPN system", $message, "From: niroopmagalage@gmail.com" );
     exit(); // exit script
 } 
 // Check number 4 ------------------------------------------------------------------------------------------------------------
@@ -89,7 +89,7 @@ $fullAmount = number_format($fullAmount, 2);
 $grossAmount = $_POST['mc_gross']; 
 if ($fullAmount != $grossAmount) {
         $message = "Possible Price Jack: " . $_POST['payment_gross'] . " != $fullAmount \n\n\n$req";
-        mail("rxhanafi@gmail.com", "Price Jack or Bad Programming", $message, "From: rxhanafi@gmail.com" );
+        mail("niroopmagalage@gmail.com", "Price Jack or Bad Programming", $message, "From: niroopmagalage@gmail.com" );
         exit(); // exit script
 } 
 // END ALL SECURITY CHECKS NOW IN THE DATABASE IT GOES ------------------------------------
@@ -104,5 +104,5 @@ $sql = mysqli_query($link,"INSERT INTO transactions (product_id_array, payer_ema
 
 mysqli_close($link);
 // Mail yourself the details
-mail("rxhanafi@gmail.com", "NORMAL IPN RESULT YAY MONEY!", $req, "From: rxhanafi@gmail.com");
+mail("niroopmagalage@gmail.com", "NORMAL IPN RESULT YAY MONEY!", $req, "From: niroopmagalage@gmail.com");
 ?>
