@@ -84,50 +84,69 @@ if (isset($_GET['pid'])) {
  <link href="../style/my.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background:#fff;">
+<?php include_once("template_header.php");?>
+
+<div class="container" style="background:#fff;width:65%">
+
+
 
 <div align="center" id="mainWrapper">
-  <?php include_once("template_header.php");?>
+  
   <div id="pageContent"><br />
-    <div align="right" style="margin-right:32px;"><a href="inventory_list.php#inventoryForm">+ Add New Inventory Item</a></div>
+  <div class="row">
+    <div class="col-md-12">
+      <a href="inventory_list.php" class="btn btn-success pull-right">Go Back</a>
+    </div>
+  </div>
+    
 <div align="left" style="margin-left:24px;">
-
+    
     </div>
     <hr />
     <a name="inventoryForm" id="inventoryForm"></a>
     <h3>
-    &darr; Add New Inventory Item Form &darr;
+    &darr; Edit Inventory Item Form &darr;
     </h3>
-
+  <br>
+  
+  <br>
 
        <div class="row">
-    <div class="col-sm-7 col-sm-offset-3">
+    <div class="col-md-12">
 
-    <form action="inventory_edit.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
+    <form class="form-horizontal" action="inventory_edit.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
+    
+    <div class="form-group">
+      <label for="product_name" class="col-sm-2 control-label">Product Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" name="product_name" type="text" id="product_name" value="<?php echo $product_name; ?>" />
+      </div>
+    </div>
 
+        <div class="form-group">
+      <label for="product_name" class="col-sm-2 control-label">Product Price  $</label>
+      <div class="col-sm-10">
+        <input class="form-control" name="price" type="text" id="price" value="<?php echo $price; ?>"/>
+      </div>
+    </div>
 
-
-        <label>   Product Name
-          <input class="form-control" name="product_name" type="text" id="product_name" value="<?php echo $product_name; ?>" />
-        </label>  </br> </br>
-
-
-        <label>  Product Price  $
-
-          <input class="form-control" name="price" type="text" id="price" value="<?php echo $price; ?>"/>
-        </label>
-        </br> </br>
-        <label>Category
-          <select class="form-control" name="category" id="category">
+     <div class="form-group">
+      <label for="product_name" class="col-sm-2 control-label">Category</label>
+      <div class="col-sm-10">
+        <select class="form-control" name="category" id="category">
             <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
           <option value="Clothing">Clothing</option>
           <option value="Toys">Toys</option>
           <option value="Electronics">Electronics</option>
           <option value="Sporting Goods">Sporting Goods</option>
           </select>
-        </label>
-        </br>   </br>
-        <label>Subcategory
+      </div>
+    </div>
+
+ <div class="form-group">
+      <label for="product_name" class="col-sm-2 control-label">Subcategory</label>
+      <div class="col-sm-10">
         <select  name="subcategory" id="subcategory" class="form-control">
             <option value="<?php echo $subcategory; ?>"><?php echo $subcategory; ?></option>
           <option value="Pants">Pants</option>
@@ -146,17 +165,24 @@ if (isset($_GET['pid'])) {
           <option value="Computer Accessories">Computer Accessories</option>
           <option value="Camera Accessories">Camera Accessories</option>
           </select>
-           </select>
-           </br> </br>
-          <label>Product Details
-          <textarea class="form-control" name="details" id="details"><?php echo $details; ?></textarea>
-        </label>
-        </br>   </br>
-        <label>Product Image
-          <input type="file" class="form-control" name="fileField" id="fileField" />
-        </label>
+      </div>
+    </div>
 
-        </br> </br>
+ <div class="form-group">
+      <label for="product_name" class="col-sm-2 control-label">Product Details</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" name="details" id="details"><?php echo $details; ?></textarea>
+      </div>
+    </div>
+
+<div class="form-group">
+      <label for="product_name" class="col-sm-2 control-label">Product Image</label>
+      <div class="col-sm-10">
+        <input type="file" class="form-control" name="fileField" id="fileField" />
+      </div>
+    </div>
+
+    
         &nbsp;
         <label>
             <input name="thisID" type="hidden" value="<?php echo $targetID; ?>" />
@@ -174,7 +200,9 @@ if (isset($_GET['pid'])) {
     <br />
   <br />
   </div>
+
   <?php include_once("template_footer.php");?>
+</div>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
