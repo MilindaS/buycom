@@ -14,7 +14,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     $password = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]); // filter everything but numbers and letters
     // Connect to the MySQL database  
     include "../storescripts/connect_to_mysql.php"; 
-    $sql = mysqli_query($link,$link,"SELECT id FROM admin WHERE username='$manager' AND password='$password' LIMIT 1"); // query the person
+    $sql = mysqli_query($link,"SELECT id FROM admin WHERE username='$manager' AND password='$password' LIMIT 1"); // query the person
     // ------- MAKE SURE PERSON EXISTS IN DATABASE ---------
     //print_r($sql);
 

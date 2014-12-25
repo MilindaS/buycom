@@ -1,15 +1,15 @@
 <?php
 
 
-
+include "storescripts/connect_to_mysql.php";
 
 // Parse the form data and add inventory item to the system
 if (isset($_POST['tot'])) {
 
-     $tot = mysqli_real_escape_string($_POST['tot']);
-	$name = mysqli_real_escape_string($_POST['name']);
-	$email = mysqli_real_escape_string($_POST['email']);
-	$address = mysqli_real_escape_string($_POST['address']);
+     $tot = mysqli_real_escape_string($link,$_POST['tot']);
+	$name = mysqli_real_escape_string($link,$_POST['name']);
+	$email = mysqli_real_escape_string($link,$_POST['email']);
+	$address = mysqli_real_escape_string($link,$_POST['address']);
 
     }
 

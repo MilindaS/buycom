@@ -50,11 +50,11 @@ if (isset($_GET['yesdelete'])) {
 // Parse the form data and add inventory item to the system
 if (isset($_POST['product_name'])) {
 	
-    $product_name = mysqli_real_escape_string($_POST['product_name']);
-	$price = mysqli_real_escape_string($_POST['price']);
-	$category = mysqli_real_escape_string($_POST['category']);
-	$subcategory = mysqli_real_escape_string($_POST['subcategory']);
-	$details = mysqli_real_escape_string($_POST['details']);
+    $product_name = mysqli_real_escape_string($link,$_POST['product_name']);
+	$price = mysqli_real_escape_string($link,$_POST['price']);
+	$category = mysqli_real_escape_string($link,$_POST['category']);
+	$subcategory = mysqli_real_escape_string($link,$_POST['subcategory']);
+	$details = mysqli_real_escape_string($link,$_POST['details']);
 	// See if that product name is an identical match to another product in the system
 	$sql = mysqli_query($link,"SELECT id FROM products WHERE product_name='$product_name' LIMIT 1");
 	$productMatch = mysqli_num_rows($sql); // count the output amount
