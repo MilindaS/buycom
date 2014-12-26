@@ -8,6 +8,11 @@ if (!isset($_SESSION["manager"])) {
 }
 
 include "../storescripts/connect_to_mysql.php"; 
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +36,7 @@ include "../storescripts/connect_to_mysql.php";
 
 		<div class="row">
 		    <div class="col-md-12">
-		      <a href="inventory_add.php" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Add New User</a>
+		      <a href="user_add.php" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Add New User</a>
 		    </div>
 		</div>
 
@@ -98,7 +103,7 @@ include "../storescripts/connect_to_mysql.php";
 
 </body>
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
 </html>
