@@ -144,7 +144,7 @@ if (isset($_POST['product_name'])) {
 ?>
 <tr>
             <td>
-              <img " class="thumbnail" src="../inventory_images/<?php echo $id;?>.jpg" alt="' . $product_name . '" width="120"  border="1" />
+              <img class="thumbnail" src="../inventory_images/<?php echo $id;?>.jpg" alt="' . $product_name . '" width="120"  border="1" />
             </td>
             <td><?php echo $product_name;?></td>
             <td><?php echo $price;?></td>
