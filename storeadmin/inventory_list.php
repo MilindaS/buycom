@@ -65,7 +65,7 @@ if (isset($_POST['product_name'])) {
 	// Add this product into the database now
 	$sql = mysqli_query($link,"INSERT INTO products (product_name, price, details, category, subcategory, date_added,added_by) 
         VALUES('$product_name','$price','$details','$category','$subcategory',now(),$managerID)") or die (mysqli_error());
-     $pid = mysqli_insert_id();
+     $pid = mysqli_insert_id($link);
 	// Place image in the folder 
 	$newname = "$pid.jpg";
 	move_uploaded_file( $_FILES['fileField']['tmp_name'], "../inventory_images/$newname");
