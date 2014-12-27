@@ -10,7 +10,14 @@ if (!isset($_SESSION["manager"])) {
 include "../storescripts/connect_to_mysql.php"; 
 
 
-
+if (isset($_GET['deleteid'])) {
+	
+	$id = $_GET['deleteid'];
+	$sql = mysqli_query($link,"DELETE FROM user WHERE id='$id'") or die (mysqli_error());
+	
+	header("location: user_list.php"); 
+    
+}
 
 
 ?>
@@ -50,15 +57,10 @@ include "../storescripts/connect_to_mysql.php";
 						<th>Full name</th>
 						<th>Username</th>
 						<th>Email</th>
+						<th>Created Date</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
-
-
-
-
-
-
 				<tbody>
 					<?php
 					$sql = mysqli_query($link,"SELECT * FROM user ORDER BY date_created DESC");
@@ -75,10 +77,12 @@ include "../storescripts/connect_to_mysql.php";
 								<td><?php echo $fullname;?></td>
 								<td><?php echo $username;?></td>
 								<td><?php echo $email;?></td>
+								<td><?php echo $date_created;?></td>
+								
 								<td>
-									<a href='user_edit.php?pid=<?php echo $id;?>'class='btn btn-primary btn-sm'>edit</a> 
+									<a href='user_edit.php?uid=<?php echo $id;?>'class='btn btn-primary btn-sm'>Edit</a> 
 									&bull; 
-									<a href='user_list.php?deleteid=<?php echo $id;?>' class='btn btn-danger btn-sm'>delete</a>
+									<a onclick="confirmDel(<?php echo $id;?>);" class='btn btn-danger btn-sm'>Delete</a>
 								</td>
 							</tr>   
 							<?php 
@@ -103,7 +107,16 @@ include "../storescripts/connect_to_mysql.php";
 
 </body>
 
- <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!--<script src="js/bootstrap.min.js"></script>-->
 </html>
+
+
+<script>
+	function confirmDel(e){
+		if(confirm("Are you sure want to delete this user")){
+			window.location.href = 'user_list.php?deleteid='+e;
+		}
+	}
+</script>
