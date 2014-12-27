@@ -5,8 +5,3 @@
 </center>
 </div>
 </div>
-
-<script>
-	$('#footer').css({'position':'absolute','bottom':'0px','width':'100%'});
-
-</script>
