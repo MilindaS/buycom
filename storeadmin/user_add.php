@@ -35,8 +35,8 @@ if (isset($_POST['useradd'])) {
 
   if(empty($error)){
       $password = md5($password);
-        $sql = mysqli_query($link,"INSERT INTO user (fullname, username, password, email) 
-        VALUES('$fullname','$username','$password','$email')") or die (mysqli_error());
+        $sql = mysqli_query($link,"INSERT INTO user (fullname, username, password, email,date_created) 
+        VALUES('$fullname','$username','$password','$email',now())") or die (mysqli_error());
         header('Location:user_list.php');  
   }
 }

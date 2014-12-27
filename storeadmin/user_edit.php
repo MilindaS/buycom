@@ -31,8 +31,7 @@ if (isset($_POST['useradd'])) {
   $fullname = mysqli_real_escape_string($link,$_POST['fullname']);
   $username = mysqli_real_escape_string($link,$_POST['username']);
   $email = mysqli_real_escape_string($link,$_POST['email']);
-  $password = mysqli_real_escape_string($link,$_POST['password']);
-  $repassword = mysqli_real_escape_string($link,$_POST['repassword']);
+  
 
   if($fullname==""){
     array_push($error, "Fullname cannot be empty !");

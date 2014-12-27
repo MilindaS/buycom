@@ -6,7 +6,7 @@ $db_host = "localhost";
 // Place the username for the MySQL database here 
 $db_username = "root";
 // Place the password for the MySQL database here 
-$db_pass = "";
+$db_pass = "password";
 // Place the name for the MySQL database here 
 $db_name = "buycom";
 
