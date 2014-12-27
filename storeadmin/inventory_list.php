@@ -12,7 +12,7 @@ $password = preg_replace('#[^A-Za-z0-9]#i', '', $_SESSION["password"]); // filte
 // Run mySQL query to be sure that this person is an admin and that their password session var equals the database information
 // Connect to the MySQL database  
 include "../storescripts/connect_to_mysql.php"; 
-$sql = mysqli_query($link,"SELECT * FROM admin WHERE id='$managerID' AND username='$manager' AND password='$password' LIMIT 1"); // query the person
+$sql = mysqli_query($link,"SELECT * FROM user WHERE id='$managerID' AND username='$manager' AND password='$password' LIMIT 1"); // query the person
 // ------- MAKE SURE PERSON EXISTS IN DATABASE ---------
 $existCount = mysqli_num_rows($sql); // count the row nums
 if ($existCount == 0) { // evaluate the count
@@ -63,8 +63,8 @@ if (isset($_POST['product_name'])) {
 		exit();
 	}
 	// Add this product into the database now
-	$sql = mysqli_query($link,"INSERT INTO products (product_name, price, details, category, subcategory, date_added) 
-        VALUES('$product_name','$price','$details','$category','$subcategory',now())") or die (mysqli_error());
+	$sql = mysqli_query($link,"INSERT INTO products (product_name, price, details, category, subcategory, date_added,added_by) 
+        VALUES('$product_name','$price','$details','$category','$subcategory',now(),$managerID)") or die (mysqli_error());
      $pid = mysqli_insert_id();
 	// Place image in the folder 
 	$newname = "$pid.jpg";
@@ -130,7 +130,7 @@ if (isset($_POST['product_name'])) {
       <?php 
         // This block grabs the whole list for viewing
         $product_list = "";
-        $sql = mysqli_query($link,"SELECT * FROM products ORDER BY date_added DESC");
+        $sql = mysqli_query($link,"SELECT * FROM products where added_by = $managerID ORDER BY date_added DESC");
         $productCount = mysqli_num_rows($sql); // count the output amount
         if ($productCount > 0) {
           while($row = mysqli_fetch_array($sql)){ 
@@ -170,6 +170,13 @@ if (isset($_POST['product_name'])) {
     </div>
     <hr />
     <a name="inventoryForm" id="inventoryForm"></a>
+    
+
+
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
   <?php include_once("template_footer.php");?>
 </div>
 </div>
@@ -187,11 +194,5 @@ if (isset($_POST['product_name'])) {
 
 
 
-
-
- <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

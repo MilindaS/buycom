@@ -15,7 +15,14 @@
 		<ul class="nav navbar-nav">
             <li> <a href="index.php">Home</a></li>
             <li><a href="inventory_list.php">Manage Stock</a></li>
-<li><a href="user_list.php">Manage Users</a></li>
+            <?php if(isset($_SESSION["id"])){
+			if($_SESSION["id"]==12){
+           ?>
+				<li><a href="user_list.php">Manage Users</a></li>
+			<?php
+			}
+			}
+			?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li ><a href="logout.php" > Logout</a></li>
